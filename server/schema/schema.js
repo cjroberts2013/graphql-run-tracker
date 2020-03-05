@@ -100,6 +100,18 @@ const RootQuery = new GraphQLObjectType({
 			resolve(parentValue, args) {
 				return _.find(users, { id: args.id });
 			}
+		},
+		runs: {
+			type: new GraphQLList(RunType),
+			resolve(parentValue, args) {
+				return runs;
+			}
+		},
+		users: {
+			type: new GraphQLList(UserType),
+			resolve(parentValue, args) {
+				return users;
+			}
 		}
 	}
 });
