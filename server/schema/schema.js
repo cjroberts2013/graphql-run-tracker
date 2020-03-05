@@ -1,6 +1,12 @@
 const graphql = require("graphql");
 
-const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLInt } = graphql;
+const {
+	GraphQLObjectType,
+	GraphQLString,
+	GraphQLList,
+	GraphQLSchema,
+	GraphQLInt
+} = graphql;
 
 const _ = require("lodash");
 
@@ -12,9 +18,9 @@ var runs = [
 		distance: "26.2 mile",
 		pace: "10:31/mi",
 		time: "5:45:58",
-		note: "This was the LR Marathon. It was Awesome!",
-		user: "CJ Roberts",
-		id: "1"
+		notes: "This was the LR Marathon. It was Awesome!",
+		id: "1",
+		userId: "1"
 	},
 	{
 		type: "short run",
@@ -22,9 +28,9 @@ var runs = [
 		distance: "5.2 mile",
 		pace: "10:31/mi",
 		time: "45:58",
-		note: "This was a short rainy run",
-		user: "CJ Roberts",
-		id: "2"
+		notes: "This was a short rainy run",
+		id: "2",
+		userId: "1"
 	},
 	{
 		type: "fast run",
@@ -32,9 +38,9 @@ var runs = [
 		distance: "15.2 mile",
 		pace: "8:31/mi",
 		time: "34:58",
-		note: "This was a speed workout",
-		user: "Christina Oakley",
-		id: "3"
+		notes: "This was a speed workout",
+		id: "3",
+		userId: "2"
 	}
 ];
 
@@ -53,7 +59,12 @@ const RunType = new GraphQLObjectType({
 		pace: { type: GraphQLString },
 		time: { type: GraphQLString },
 		notes: { type: GraphQLString },
-		user: { type: GraphQLString }
+		user: {
+			type: UserType,
+			resolve(parentValue, args) {
+				return _.find(users, { id: parentValue.userId });
+			}
+		}
 	})
 });
 
@@ -62,7 +73,13 @@ const UserType = new GraphQLObjectType({
 	fields: () => ({
 		id: { type: GraphQLString },
 		age: { type: GraphQLInt },
-		name: { type: GraphQLString }
+		name: { type: GraphQLString },
+		runs: {
+			type: new GraphQLList(RunType),
+			resolve(parentValue, args) {
+				return _.filter(runs, { userId: parentValue.id });
+			}
+		}
 	})
 });
 
