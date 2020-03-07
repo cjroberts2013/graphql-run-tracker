@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const runSchema = new Schema({
-	id: String,
 	type: String,
 	date: String,
 	distance: String,

@@ -8,7 +8,8 @@ const {
 	GraphQLList,
 	GraphQLSchema,
 	GraphQLInt,
-	GraphQLID
+	GraphQLID,
+	GraphQLNonNull
 } = graphql;
 
 const _ = require("lodash");
@@ -92,8 +93,8 @@ const Mutation = new GraphQLObjectType({
 		addUser: {
 			type: UserType,
 			args: {
-				name: { type: GraphQLString },
-				age: { type: GraphQLInt }
+				name: { type: new GraphQLNonNull(GraphQLString) },
+				age: { type: new GraphQLNonNull(GraphQLInt) }
 			},
 			resolve(parentValue, args) {
 				let user = new User({
@@ -106,13 +107,13 @@ const Mutation = new GraphQLObjectType({
 		addRun: {
 			type: RunType,
 			args: {
-				type: { type: GraphQLString },
-				date: { type: GraphQLString },
-				distance: { type: GraphQLString },
-				pace: { type: GraphQLString },
-				time: { type: GraphQLString },
-				notes: { type: GraphQLString },
-				userId: { type: GraphQLString }
+				type: { type: GraphQLNonNull(GraphQLString) },
+				date: { type: GraphQLNonNull(GraphQLString) },
+				distance: { type: GraphQLNonNull(GraphQLString) },
+				pace: { type: GraphQLNonNull(GraphQLString) },
+				time: { type: GraphQLNonNull(GraphQLString) },
+				notes: { type: GraphQLNonNull(GraphQLString) },
+				userId: { type: GraphQLNonNull(GraphQLString) }
 			},
 			resolve(parentValue, args) {
 				let run = new Run({
