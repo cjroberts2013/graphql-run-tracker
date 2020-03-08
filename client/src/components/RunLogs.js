@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
+import Logs from "./Logs/Logs";
 
 const getRunsQuery = gql`
 	{
@@ -9,6 +10,7 @@ const getRunsQuery = gql`
 			distance
 			id
 			pace
+			date
 			time
 			notes
 			user {
@@ -27,20 +29,23 @@ class RunLogs extends Component {
 		} else {
 			return data.runs.map(run => {
 				return (
-					<li key={run.id}>
-						{run.type} {run.distance}
-					</li>
+					<Logs
+						type={run.type}
+						date={run.date}
+						distance={run.distance}
+						time={run.time}
+						pace={run.pace}
+						notes={run.notes}
+						key={run.id}
+						id={run.id}
+					/>
 				);
 			});
 		}
 	}
 
 	render() {
-		return (
-			<div>
-				<ul id="run-logs">{this.displayRuns()}</ul>
-			</div>
-		);
+		return <div id="run-logs">{this.displayRuns()}</div>;
 	}
 }
 
