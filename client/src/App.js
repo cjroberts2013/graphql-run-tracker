@@ -1,8 +1,24 @@
-import React from "react";
-import "./App.css";
+import React, { Component } from "react";
+import RunLogs from "./components/RunLogs";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
 
-function App() {
-	return <div className="App"></div>;
+// Apollo client setup
+const client = new ApolloClient({
+	uri: "http://localhost:4000/graphql"
+});
+
+class App extends Component {
+	render() {
+		return (
+			<ApolloProvider client={client}>
+				<div id="main">
+					<h1>My Run Tracker</h1>
+					<RunLogs />
+				</div>
+			</ApolloProvider>
+		);
+	}
 }
 
 export default App;
