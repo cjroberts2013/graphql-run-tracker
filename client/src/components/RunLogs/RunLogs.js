@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
-import Logs from "./Logs/Logs";
+import Logs from "../Logs/Logs";
+import "./RunLogs.css";
 
 const getRunsQuery = gql`
 	{
@@ -45,7 +46,21 @@ class RunLogs extends Component {
 	}
 
 	render() {
-		return <div id="run-logs">{this.displayRuns()}</div>;
+		return (
+			<div className="run__logs">
+				<div className="run__logs--left">
+					<h1>Race Logs</h1>
+					{this.displayRuns()}
+					<div>
+						{/* RunLog Form to add new runs. Use a function to display either a button or the form */}
+						<p>Runlog form</p>
+					</div>
+				</div>
+				<div className="run__logs--right">
+					{/* display all the possible runners along with a create runner button */}
+				</div>
+			</div>
+		);
 	}
 }
 

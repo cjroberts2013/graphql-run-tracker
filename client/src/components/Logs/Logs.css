@@ -90,3 +90,33 @@
 		margin: 1rem;
 	}
 } */
+
+.card {
+	width: 80%;
+	margin: 1rem auto;
+	background: #fff;
+	box-shadow: 2px 4px 8px #18c29c;
+	padding: 0.5rem;
+}
+
+span {
+	font-weight: 400;
+}
+
+.card__details {
+	display: flex;
+	font-size: 1.2rem;
+	font-weight: 700;
+}
+
+.card__details--left {
+	width: 40%;
+	padding: 1rem;
+	line-height: 2rem;
+}
+
+.card__details--right {
+	width: 60%;
+	padding: 1rem;
+	line-height: 1.4rem;
+}

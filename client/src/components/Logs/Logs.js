@@ -55,7 +55,22 @@ class Logs extends Component {
 			// 		<div className="runLog__comments">{this.logNotes}</div>
 			// 	</div>
 			// </div>
-			<div className="card"></div>
+			<div className="card">
+				<h1>
+					{this.type}: <span>{this.date}</span>
+				</h1>
+				<div className="card__details">
+					<div className="card__details--left">
+						Distance: <span>{this.distance}</span> <br />
+						Time: <span>{this.time}</span> <br />
+						Pace: <span>{this.pace}</span>
+					</div>
+					<div className="card__details--right">
+						Notes <br />
+						<span>{this.notes}</span>
+					</div>
+				</div>
+			</div>
 		);
 	}
 }

@@ -1,0 +1,16 @@
+.run__logs {
+	display: flex;
+}
+
+.run__logs--left {
+	width: 60%;
+	height: 100%;
+	background: #88f9d4;
+}
+
+.run__logs--right {
+	width: 40%;
+	align-self: stretch;
+
+	background: #001727;
+}
