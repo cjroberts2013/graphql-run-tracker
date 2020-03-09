@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 import "./AddLog.css";
-import { formatError } from "graphql";
+import * as compose from "lodash.flowright";
 
 const getUsersQuery = gql`
 	{
@@ -14,13 +14,31 @@ const getUsersQuery = gql`
 	}
 `;
 
+const addRaceMutation = gql`
+	mutation( $type: String!, $date: String!, $distance: String!, $pace: String!, $time: String!, $notes: String!, $userId: String!) {
+		addRun( type: $type, date: $date, distance: $distance, pace: $pace, time: $time, notes: $notes, userId: $userId) {
+			type
+			distance
+		}
+	}
+`;
+
 class AddLogs extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			userId: "",
+			type: "",
+			date: "",
+			distance: "",
+			pace: "",
+			time: "",
+			notes: ""
+		};
 	}
 
 	displayUsers() {
-		let data = this.props.data;
+		let data = this.props.getUsersQuery;
 		if (data.loading) {
 			return <option>Loading Runners...</option>;
 		} else {
@@ -34,12 +52,27 @@ class AddLogs extends Component {
 		}
 	}
 
+	submitForm(e) {
+		e.preventDefault();
+		this.props.addRaceMutation({
+			variables: {
+				userId: this.state.userId,
+				type: this.state.type,
+				date: this.state.date,
+				distance: this.state.distance,
+				pace: this.state.pace,
+				time: this.state.time,
+				notes: this.state.notes
+			}
+		});
+	}
+
 	render() {
 		return (
-			<form className="form">
+			<form className="form" onSubmit={this.submitForm.bind(this)}>
 				<div className="form-group">
 					<label htmlFor="user">Runner</label>
-					<select>
+					<select onChange={e => this.setState({ userId: e.target.value })}>
 						<option>Select Runner</option>
 						{this.displayUsers()}
 					</select>
@@ -47,6 +80,7 @@ class AddLogs extends Component {
 				<div className="form-group">
 					<label htmlFor="runType">Type of Race</label>
 					<input
+						onChange={e => this.setState({ type: e.target.value })}
 						type="text"
 						name="runType"
 						className="form-control"
@@ -55,12 +89,18 @@ class AddLogs extends Component {
 				</div>
 				<div className="form-group">
 					<label htmlFor="runDate">Date</label>
-					<input type="date" name="runDate" className="form-control" />
+					<input
+						type="date"
+						onChange={e => this.setState({ date: e.target.value })}
+						name="runDate"
+						className="form-control"
+					/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="runDistance">Distance</label>
 					<input
-						type="number"
+						type="text"
+						onChange={e => this.setState({ distance: e.target.value })}
 						name="runDistance"
 						className="form-control"
 						placeholder="Distance in Miles"
@@ -70,6 +110,7 @@ class AddLogs extends Component {
 					<label htmlFor="runPace">Pace</label>
 					<input
 						type="text"
+						onChange={e => this.setState({ pace: e.target.value })}
 						name="runPace"
 						className="form-control"
 						placeholder="Minutes/Mile"
@@ -79,6 +120,7 @@ class AddLogs extends Component {
 					<label htmlFor="runTime">Time</label>
 					<input
 						type="text"
+						onChange={e => this.setState({ time: e.target.value })}
 						name="runTime"
 						className="form-control"
 						placeholder="Overall Time"
@@ -89,6 +131,7 @@ class AddLogs extends Component {
 					<label htmlFor="runNote">Notes</label>
 					<textarea
 						type="string"
+						onChange={e => this.setState({ notes: e.target.value })}
 						name="runNotes"
 						className="form-control"
 						rows="5"
@@ -101,4 +144,7 @@ class AddLogs extends Component {
 	}
 }
 
-export default graphql(getUsersQuery)(AddLogs);
+export default compose(
+	graphql(getUsersQuery, { name: "getUsersQuery" }),
+	graphql(addRaceMutation, { name: "addRaceMutation" })
+)(AddLogs);
