@@ -3,6 +3,7 @@ import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 import Logs from "../Logs/Logs";
 import AddLog from "./../AddLog/AddLog";
+import UserDetails from './../UserDetails/UserDetails'
 import "./RunLogs.css";
 
 const getRunsQuery = gql`
@@ -59,6 +60,7 @@ class RunLogs extends Component {
 				</div>
 				<div className="run__logs--right">
 					{/* display all the possible runners along with a create runner button */}
+					<UserDetails />
 				</div>
 			</div>
 		);

@@ -14,6 +14,24 @@ const getUsersQuery = gql`
 	}
 `;
 
+const getRunsQuery = gql`
+	{
+		runs {
+			type
+			distance
+			id
+			pace
+			date
+			time
+			notes
+			user {
+				name
+				age
+			}
+		}
+	}
+`;
+
 const addRaceMutation = gql`
 	mutation( $type: String!, $date: String!, $distance: String!, $pace: String!, $time: String!, $notes: String!, $userId: String!) {
 		addRun( type: $type, date: $date, distance: $distance, pace: $pace, time: $time, notes: $notes, userId: $userId) {
@@ -63,7 +81,8 @@ class AddLogs extends Component {
 				pace: this.state.pace,
 				time: this.state.time,
 				notes: this.state.notes
-			}
+			},
+			refetchQueries: [{ query: getRunsQuery }]
 		});
 	}
 
