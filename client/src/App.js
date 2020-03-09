@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import RunLogs from "./components/RunLogs";
+import RunLogs from "./components/RunLogs/RunLogs";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
@@ -13,7 +13,7 @@ class App extends Component {
 		return (
 			<ApolloProvider client={client}>
 				<div id="main">
-					<h1>My Run Tracker</h1>
+					<h1>My Race Tracker</h1>
 					<RunLogs />
 				</div>
 			</ApolloProvider>
