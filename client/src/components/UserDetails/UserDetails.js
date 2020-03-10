@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
-import User from './../User/User'
 import './UserDetails.css'
 
 const getUsersQuery = gql`
@@ -9,22 +8,20 @@ const getUsersQuery = gql`
 		users {
 			name
 			id
-            age
-            runs {
-                type
-                date
-                distance
-                pace
-                time
-                notes
-            }
-            
 		}
 	}
 `;
 
 
+
+
 class UserDetails extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selected: null
+        }
+    }
 
     displayUsers() {
         let data = this.props.data;
@@ -33,27 +30,17 @@ class UserDetails extends Component {
         } else {
             return data.users.map(user => {
                 return (
-                    <User
-                        key={user.id}
-                        name={user.name}
-                        age={user.age}
-                        id={user.id}
-                        runs={user.runs}
-                        type={user.runs.type}
-                        date={user.runs.date}
-                        distance={user.runs.distance}
-                        time={user.runs.time}
-                        pace={user.runs.pace}
-                        notes={user.runs.notes}
-                        runId={user.runs.id} />
+                    <div>loading</div>
                 )
             })
         }
     }
 
     render() {
+        console.log(this.state.selected);
         return (
             <div className='user__details'>
+                <h1>Runners</h1>
                 {this.displayUsers()}
             </div>
         )
