@@ -90,6 +90,13 @@
 		margin: 1rem;
 	}
 } */
+h2, h3 {
+	text-align: center;
+}
+
+h3 {
+	margin-top: -20px;
+}
 
 .card {
 	width: 80%;
@@ -115,8 +122,9 @@ span {
 	line-height: 2rem;
 }
 
-.card__details--right {
+.card__details--right{
 	width: 60%;
 	padding: 1rem;
 	line-height: 1.4rem;
 }
+

@@ -1,0 +1,16 @@
+.user__details {
+    color: white;
+}
+
+.user__names {
+    list-style-type: none;
+}
+
+button {
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    background: #001727;
+    color: white;
+}

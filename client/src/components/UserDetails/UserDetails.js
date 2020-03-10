@@ -1,50 +1,68 @@
 import React, { Component } from "react";
-import { gql } from "apollo-boost";
-import { graphql } from "react-apollo";
+import { graphql } from 'react-apollo';
+import { gql } from 'apollo-boost'
+
 import './UserDetails.css'
 
-const getUsersQuery = gql`
-	{
-		users {
-			name
-			id
-		}
-	}
-`;
-
-
+const getUserQuery = gql`
+    query($id: ID) {
+        user(id: $id) {
+            name
+            age
+            id
+            runs {
+                type
+                date
+                id
+                distance
+                pace
+                time
+                notes
+            }
+        }
+    }
+`
 
 
 class UserDetails extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selected: null
-        }
-    }
 
-    displayUsers() {
-        let data = this.props.data;
-        if (data.loading) {
-            return <div>Loading Runners...</div>
+    displayUserDetails() {
+        const { user } = this.props.data
+        if (user) {
+            return (
+                <div>
+                    Name: {user.name} <br />
+                    Age: {user.age} <br />
+                    Races Competed In:
+                    <ul>
+                        {
+                            user.runs.map(run => {
+                                return <li key={run.id}>{run.type}</li>
+                            })
+                        }
+                    </ul>
+                </div>
+            )
         } else {
-            return data.users.map(user => {
-                return (
-                    <div>loading</div>
-                )
-            })
+            return < div > Select a runner for more details!</div >
         }
     }
 
     render() {
-        console.log(this.state.selected);
-        return (
-            <div className='user__details'>
-                <h1>Runners</h1>
-                {this.displayUsers()}
-            </div>
-        )
+
+        console.log(this.props);
+        return (<div>
+            {this.displayUserDetails()}
+        </div>)
     }
 }
 
-export default graphql(getUsersQuery)(UserDetails);
+export default graphql(getUserQuery, {
+    options: (props) => {
+        return {
+            variables: {
+                id: props.userId
+            }
+        }
+    }
+})(UserDetails)
