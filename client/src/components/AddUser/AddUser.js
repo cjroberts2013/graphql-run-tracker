@@ -31,7 +31,7 @@ class AddUser extends Component {
         super(props);
         this.state = {
             name: '',
-            age: ''
+            age: null
         };
     }
 

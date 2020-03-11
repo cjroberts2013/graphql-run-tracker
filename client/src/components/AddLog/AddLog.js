@@ -52,7 +52,7 @@ class AddLogs extends Component {
 			userId: "",
 			type: "",
 			date: "",
-			distance: "",
+			distance: null,
 			pace: "",
 			time: "",
 			notes: ""
