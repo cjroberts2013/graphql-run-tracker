@@ -1,3 +1,8 @@
 .user__details {
     color: white;
 }
+
+.user__info {
+    width: 80%;
+    margin: 20px auto 30px auto;
+}

@@ -93,6 +93,7 @@ class AddLogs extends Component {
 	render() {
 		return (
 			<form className="form" onSubmit={this.submitForm.bind(this)}>
+				<h2 className='card__header'>Add New Race Form</h2>
 				<div className="form-group">
 					<label htmlFor="user">Runner</label>
 					<select onChange={e => this.setState({ userId: e.target.value })}>
@@ -161,7 +162,7 @@ class AddLogs extends Component {
 					></textarea>
 				</div>
 
-				<button>Add Race</button>
+				<button className='race__button'>ADD RACE</button>
 			</form>
 		);
 	}

@@ -1,0 +1,46 @@
+
+.form {
+    width: 80%;
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+	box-shadow: 5px 5px 1px #126872;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+input, textarea, select {
+    width: 80%;
+    background-color: white;
+    display: block;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.form-group {
+    width: 80%;
+    margin: 10px auto;
+}
+
+.race__button {
+    width: 64%;
+    font-weight: bold;
+}
+
+.race__button:hover {
+    background-color: #88F9D4;
+}
+
+@media screen and (max-width: 580px) {
+    .form-btn {
+        font-size: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    .form-btn {
+        font-size: 1.6rem;
+    }
+  }

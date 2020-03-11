@@ -4,6 +4,8 @@
 
 .user__names {
     list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 button {
@@ -14,3 +16,4 @@ button {
     background: #001727;
     color: white;
 }
+

@@ -49,7 +49,7 @@ class UserDetails extends Component {
     }
 
     render() {
-        return (<div>
+        return (<div className='user__info'>
             {this.displayUserDetails()}
         </div>)
     }

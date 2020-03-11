@@ -49,7 +49,8 @@ class AddUser extends Component {
 
     render() {
         return (
-            <form className="form" onSubmit={this.submitForm2.bind(this)}>
+            <form className="form add__user" onSubmit={this.submitForm2.bind(this)}>
+                <h2 className='card__header'>Add New Runner Form</h2>
                 <div className="form-group">
                     <label htmlFor="userName">Runner's Name</label>
                     <input
@@ -57,7 +58,6 @@ class AddUser extends Component {
                         type="text"
                         name="userName"
                         className="form-control"
-                        placeholder="John Doe..."
                     />
                 </div>
                 <div className="form-group">
