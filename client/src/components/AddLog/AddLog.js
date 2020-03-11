@@ -10,6 +10,10 @@ const getUsersQuery = gql`
 			name
 			id
 			age
+            runs {
+                type
+                date
+            }
 		}
 	}
 `;
@@ -82,9 +86,9 @@ class AddLogs extends Component {
 				time: this.state.time,
 				notes: this.state.notes
 			},
-			refetchQueries: [{ query: getRunsQuery }]
+			refetchQueries: [{ query: getRunsQuery, getUsersQuery }]
 		});
-	}
+	};
 
 	render() {
 		return (

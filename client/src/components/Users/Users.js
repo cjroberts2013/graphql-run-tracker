@@ -2,13 +2,19 @@ import React, { Component } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 import UserDetails from './../UserDetails/UserDetails';
+import AddUser from './../AddUser/AddUser'
 import './Users.css';
 
 const getUsersQuery = gql`
 	{
 		users {
 			name
-			id
+            id
+            age
+            runs {
+                type
+                date
+            }
 		}
 	}
 `;
@@ -45,6 +51,7 @@ class Users extends Component {
                     {this.displayUsers()}
                 </ul>
                 <UserDetails userId={this.state.selected} />
+                <AddUser />
             </div>
         )
     }

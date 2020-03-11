@@ -56,12 +56,14 @@ class Logs extends Component {
 			// 	</div>
 			// </div>
 			<div className="card">
-				<h2>
-					{this.type}: <span>{this.date}</span>
-				</h2>
-				<h3>
-					Runner: <span>{this.props.name}</span>
-				</h3>
+				<div className='card__header'>
+					<h2>
+						{this.type}: <span>{this.date}</span>
+					</h2>
+					<h3>
+						Runner: <span>{this.props.name}</span>
+					</h3>
+				</div>
 				<div className="card__details">
 					<div className="card__details--left">
 						Distance: <span>{this.distance}</span> <br />

@@ -33,7 +33,7 @@ class UserDetails extends Component {
                 <div>
                     Name: {user.name} <br />
                     Age: {user.age} <br />
-                    Races Competed In:
+                    Races Ran:
                     <ul>
                         {
                             user.runs.map(run => {
@@ -49,8 +49,6 @@ class UserDetails extends Component {
     }
 
     render() {
-
-        console.log(this.props);
         return (<div>
             {this.displayUserDetails()}
         </div>)
