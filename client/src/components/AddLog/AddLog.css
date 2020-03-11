@@ -34,13 +34,20 @@ input, textarea, select {
 }
 
 @media screen and (max-width: 580px) {
-    .form-btn {
-        font-size: 1rem;
+    .form {
+        width: 90%;
     }
-  }
 
-  @media screen and (max-width: 360px) {
-    .form-btn {
-        font-size: 1.6rem;
+    input, textarea, select {
+        width: 90%;
     }
+    
+    .form-group {
+        width: 90%;
+    }
+
+    .race__button {
+        width: 81%;
+    }
+
   }

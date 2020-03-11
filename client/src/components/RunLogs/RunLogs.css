@@ -1,5 +1,6 @@
 .run__logs {
 	display: flex;
+	flex-direction: row;
 }
 
 .run__logs--left {
@@ -14,3 +15,21 @@
 
 	background: #001727;
 }
+
+@media only screen and (max-width: 1100px) {
+	.run__logs {
+		flex-direction: column-reverse;
+	}
+
+	.run__logs--left {
+		width: 100%;
+		height: 100%;
+		background: #88f9d4;
+	}
+	
+	.run__logs--right {
+		width:100%;
+	
+		background: #001727;
+	}
+  }

@@ -70,7 +70,7 @@ class AddUser extends Component {
                     />
                 </div>
 
-                <button>Add Runner</button>
+                <button className='race__button'>Add Runner</button>
             </form>
         );
     }

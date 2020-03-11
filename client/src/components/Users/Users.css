@@ -17,3 +17,8 @@ button {
     color: white;
 }
 
+.user__names button:hover {
+    color: #001727;
+    background-color: #88F9D4;
+    border: 1px solid #88F9D4;
+}
