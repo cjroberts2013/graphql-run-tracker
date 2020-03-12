@@ -11,7 +11,11 @@ const app = express();
 // allow cross origin request
 app.use(cors());
 
-mongoose.connect(process.env.MONGO_KEY, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGO_KEY, {
+	useNewUrlParser: true,
+	useCreateIndex: true,
+	useFindAndModify: false
+});
 mongoose.connection.once("open", () => {
 	console.log("Connected to MongoDB");
 }).on('error', function (error) {
