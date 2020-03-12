@@ -11,9 +11,11 @@ const app = express();
 // allow cross origin request
 app.use(cors());
 
-mongoose.connect("mongodb+srv://cjroberts:runtracker@run-tracker-zcnjj.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGO_KEY, { useNewUrlParser: true });
 mongoose.connection.once("open", () => {
 	console.log("Connected to MongoDB");
+}).on('error', function (error) {
+	console.log('Error is: ', error);
 });
 
 // Use Routes
