@@ -11,7 +11,7 @@ const app = express();
 // allow cross origin request
 app.use(cors());
 
-mongoose.connect(process.env.MONGO_KEY, {
+mongoose.connect("mongodb+srv://cjroberts:runtracker@run-tracker-zcnjj.mongodb.net/test?retryWrites=true&w=majority", {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useFindAndModify: false
