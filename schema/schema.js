@@ -27,7 +27,6 @@ const RunType = new GraphQLObjectType({
 		user: {
 			type: UserType,
 			resolve(parentValue, args) {
-				//return _.find(users, { id: parentValue.userId });
 				return User.findById(parentValue.userId);
 			}
 		}
@@ -43,7 +42,6 @@ const UserType = new GraphQLObjectType({
 		runs: {
 			type: new GraphQLList(RunType),
 			resolve(parentValue, args) {
-				//return _.filter(runs, { userId: parentValue.id });
 				return Run.find({ userId: parentValue.id });
 			}
 		}
@@ -58,7 +56,6 @@ const RootQuery = new GraphQLObjectType({
 			args: { id: { type: GraphQLID } },
 			resolve(parentValue, args) {
 				//code to get data from the db
-				//return _.find(runs, { id: args.id });
 				return Run.findById(args.id);
 			}
 		},
@@ -66,21 +63,18 @@ const RootQuery = new GraphQLObjectType({
 			type: UserType,
 			args: { id: { type: GraphQLID } },
 			resolve(parentValue, args) {
-				//return _.find(users, { id: args.id });
 				return User.findById(args.id);
 			}
 		},
 		runs: {
 			type: new GraphQLList(RunType),
 			resolve(parentValue, args) {
-				//return runs;
 				return Run.find({});
 			}
 		},
 		users: {
 			type: new GraphQLList(UserType),
 			resolve(parentValue, args) {
-				//return users;
 				return User.find({});
 			}
 		}
