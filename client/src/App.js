@@ -5,7 +5,7 @@ import { ApolloProvider } from "react-apollo";
 
 // Apollo client setup
 const client = new ApolloClient({
-	uri: "http://localhost:4000/graphql",
+	uri: "mongodb+srv://cjroberts:runtracker@run-tracker-zcnjj.mongodb.net/test?retryWrites=true&w=majority",
 	cache: new InMemoryCache()
 });
 
