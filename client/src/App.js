@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import RunLogs from "./components/RunLogs/RunLogs";
-import { ApolloClient } from "apollo-boost";
+import { ApolloClient, InMemoryCache } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
 // Apollo client setup
 const client = new ApolloClient({
-	uri: "http://localhost:4000/graphql"
+	uri: "http://localhost:4000/graphql",
+	cache: new InMemoryCache()
 });
 
 class App extends Component {
