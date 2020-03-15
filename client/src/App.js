@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import RunLogs from "./components/RunLogs/RunLogs";
-import ApolloClient from "apollo-boost";
+import { ApolloClient } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
 // Apollo client setup
